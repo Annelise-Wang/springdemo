@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>查看訊息</title>
+</head>
+<body>
+<div th:replace="~{layout/navbar}"></div>
+
+<div class="container">
+	 <h1>查看訊息</h1>
+	 <th:block th:each=" aMessage : ${page.content}">
+	 	<div class="card">
+			<div class="card-header">
+				訊息時間 <span th:text="${aMessage} ? 		
+				${#dates.format(aMessage.added, 'yyyy-MM-dd HH:mm:ss EE')}" ></span>
+			</div>
+			<div class="card-body">
+				<p class="card-text" th:text="${aMessage} ? ${aMessage.text}"></p>
+				<div class="edit-place" style="display: flex;" >
+					<form th:action="@{/message/edit}" method="get">
+						<input name="id" type="hidden" th:value="${aMessage.id}" />
+						<input type="submit" class="btn btn-outline-success" value="編輯" />
+					</form>
+					
+					<form th:action="@{/message/delete}" method="post">
+						<input name="_method" type="hidden" value="delete" />
+						<input name="id" type="hidden" th:value="${aMessage.id}" />
+				        <input type="submit" class="btn btn-outline-danger" value="刪除" />
+					</form>	
+				</div>
+			</div>
+		</div>
+     </th:block>
+     
+     
+     <ul class="pagination">
+<!--		 上一頁按鈕-->
+
+     <th:block th:switch="${page.number != 0}">
+		 <li th:case="${true}" class="page-item">
+		      <a class="page-link" th:href="@{/message/page?(p=${page.number})}">上一頁</a>
+		 </li>
+		  <li th:case="${false}" class="page-item disable">
+		     <span class="page-link">第一頁了</span>
+		 </li>
+		 
+	 </th:block>
+		 
+		 
+<!--	 頁數	 -->
+     <th:block th:each=" pageNumber : ${#numbers.sequence(1,page.totalPages)}">
+		 <th:block th:switch="${page.number != pageNumber-1}">
+			
+			<li th:case="${true}" class="page-item">
+		      <a class="page-link" th:href="@{/message/page?(p=${pageNumber})}">[[${pageNumber}]]</a>
+		    </li>
+		    
+			  <li th:case="${false}" class="page-item active">
+		        <span class="page-link">[[${pageNumber}]]</span> 
+		      </li>	    
+		 </th:block>
+	 </th:block>
+	 
+	 <!--		 下一頁按鈕-->
+	 <th:block th:switch="${page.number != page.totalPages -1}">
+		 <li th:case="${true}" class="page-item">
+		      <a class="page-link" th:href="@{/message/page?(p=${page.number + 2})}">下一頁</a>
+		 </li>
+		  <li th:case="${false}" class="page-item disable">
+		     <span class="page-link">最後一頁了兄弟</span>
+		 </li>
+		 
+	 </th:block>
+	 
+	 
+     </ul>
+</div>
+   
+</body>
+</html>

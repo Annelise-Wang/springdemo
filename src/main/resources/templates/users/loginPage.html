@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>登入</title>
+</head>
+<body>
+	<div th:replace="~{layout/navbar}"></div>
+	<div class="container">
+		<h1>登入</h1>
+		
+		<form action="#" method="post">
+
+			<div class="container">
+				<label for="uname"><b>帳號</b></label>
+				<input type="text" placeholder="Enter Username" name="uname" required>
+
+				<label for="psw"><b>密碼</b></label>
+				<input type="password" placeholder="Enter Password" name="psw" required>
+
+				<button type="submit">登入</button>
+
+			</div>
+
+		</form>
+		
+		<div class="result-block">
+			<div th:text="${session.loginUser} ?  '安安: ' + ${session.loginUser.username} "></div>
+			<div th:text="${loginFail} ? ${loginFail}"></div>
+		</div>
+		
+	</div>
+
+</body>
+</html>

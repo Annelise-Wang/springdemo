@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>編輯Page</title>
+</head>
+<body>
+	<div th:replace="~{layout/navbar}"></div>
+	 <div class="container">
+	   <h1>編輯 page</h1>
+		   <div class="card">
+			<div class="card-header">
+				編輯訊息
+			</div>
+			<div class="card-body">
+				<form th:action="@{/message/edit}" th:method="put" th:object="${messages}">
+                   <input type="hidden" th:field="*{id}" />
+                   <input type="hidden" th:field="*{added}" />
+					<textarea class="form-control" th:field="*{text}"></textarea>
+					<br>
+					<button type="submit" class="btn btn-primary">送出</button>
+						
+				</form>
+			</div>
+		</div>
+		   
+		   
+	 </div>
+</body>
+</html>

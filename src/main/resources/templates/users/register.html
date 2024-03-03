@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+	<meta charset="UTF-8">
+	<title>註冊</title>
+</head>
+
+<body>
+	<div th:replace="~{layout/navbar}"></div>
+	<div class="container">
+		<h1>註冊</h1>
+
+		<form th:action="@{/users/post}" method="post">
+
+			<div class="container">
+				<label for="uname"><b>帳號</b></label>
+				<input type="text" placeholder="Enter Username" name="uname" required>
+
+				<label for="psw"><b>密碼</b></label>
+				<input type="password" placeholder="Enter Password" name="psw" required>
+
+				<button type="submit">註冊</button>
+
+			</div>
+
+		</form>
+		
+		<div class="response-msg">
+			<div th:text="${errorMsg} ? ${errorMsg}" ></div>
+			<div th:text="${okMsg} ? ${okMsg}"></div>
+		</div>
+	</div>
+</body>
+
+</html>

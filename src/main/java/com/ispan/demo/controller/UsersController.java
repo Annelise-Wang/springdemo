@@ -66,6 +66,17 @@ public class UsersController {
 		
 		return "users/loginPage";
 	}
-	
+	@GetMapping("/users/logout")
+    public String logoutPage() {
+        return "users/logoutPage";
+    }
+
+    @PostMapping("/users/logout")
+    public String logout(HttpSession session) {
+        // 清除 session 中的登录用户信息
+    	session.invalidate();
+        // 重定向到首页
+        return "redirect:/";
+    }   
 
 }

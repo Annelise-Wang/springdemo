@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 <head>
 <meta charset="UTF-8">
@@ -8,5 +8,26 @@
 	<div th:replace="~{layout/navbar}"></div>
 	<h1>首頁</h1>
 
+</body>
+</html-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome</title>
+</head>
+<body>
+	
+	<h2>Welcome</h2>
+
+	<div sec:authorize="hasRole('USER')">使用者</div>
+	<div sec:authorize="hasRole('ADMIN')">管理者</div>
+	<div sec:authorize="isAuthenticated()">已登入</div>
+	Authenticated username:
+	<div sec:authentication="name"></div>
+	Authenticated user roles:
+	<div sec:authentication="principal.authorities"></div>
+	 <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
 </body>
 </html>

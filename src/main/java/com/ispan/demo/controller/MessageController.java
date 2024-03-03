@@ -4,6 +4,7 @@ package com.ispan.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -45,13 +46,19 @@ public class MessageController {
 		
 		return "message/addMsgPage";
 	}
-@GetMapping("/message/page")
-public String showMessages(@RequestParam(name="p",defaultValue="1") Integer pageNumber,Model model) {
-	Page<Messages> page=mService.findByPage(pageNumber);
-	model.addAttribute("page",page);
-	return "message/showMessages";
-}
-
+//@GetMapping("/message/page")
+//public String showMessages(@RequestParam(name="p",defaultValue="1") Integer pageNumber,Model model) {
+//	Page<Messages> page=mService.findByPage(pageNumber);
+//	model.addAttribute("page",page);
+//	return "message/showMessages";
+//}
+	@GetMapping("/message/page")
+    @PreAuthorize("isAuthenticated()") // 只有已经登录的用户才能访问
+    public String showMessages(@RequestParam(name="p",defaultValue="1") Integer pageNumber,Model model) {
+        Page<Messages> page=mService.findByPage(pageNumber);
+        model.addAttribute("page",page);
+        return "message/showMessages";
+    }
 @DeleteMapping("/message/delete")
 public String deleteMsg(@RequestParam Integer id) {
 	mService.deleteById(id);

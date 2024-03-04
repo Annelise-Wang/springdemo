@@ -56,6 +56,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (userDetails == null) {
             throw new UsernameNotFoundException(username);
         }
+        System.out.println("Loaded user details: " + userDetails);
         return userDetails;
     }
 }

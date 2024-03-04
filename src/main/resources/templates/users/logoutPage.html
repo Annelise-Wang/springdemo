@@ -7,17 +7,12 @@
 <body>
 	<div th:replace="~{layout/navbar}"></div>
 	<div class="container">
-		 <h1>确认登出</h1>
-    <p>您确定要登出吗？</p>
-   <form action="/users/logout" method="post">
-    <button type="submit">确认登出</button>
-    <a href="/" th:href="@{/}">取消</a>
-</form>
-		
-	
-			
-		
-		
+		 <h1>確認登出</h1>
+    <p>您確定要登出嗎？</p>
+     <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+
 	</div>
 
 </body>

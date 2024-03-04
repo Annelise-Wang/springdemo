@@ -8,23 +8,17 @@ import java.util.Objects;
 
 public class CustomUserDetails extends User {
 
-    private final String firstName;
-    private final String lastName;
+    private final String name;
     private final String email;
 
     private CustomUserDetails(Builder builder) {
         super(builder.username, builder.password, builder.authorities);
-        this.firstName = builder.firstName;
-        this.lastName = builder.lastName;
+        this.name = builder.name;
         this.email = builder.email;
     }
 
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public String getFirstName() {
-        return this.firstName;
+    public String getName() {
+        return this.name;
     }
 
     public String getEmail() {
@@ -40,32 +34,27 @@ public class CustomUserDetails extends User {
         if (!super.equals(o))
             return false;
         CustomUserDetails that = (CustomUserDetails) o;
-        return firstName.equals(that.firstName) && lastName.equals(that.lastName) && email.equals(that.email);
+        return name.equals(that.name) && email.equals(that.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), firstName, lastName, email);
+        return Objects.hash(super.hashCode(), name, email);
     }
 
     public static class Builder {
 
-        private String firstName;
-        private String lastName;
+        private String name;
         private String email;
         private String username;
         private String password;
         private Collection<? extends GrantedAuthority> authorities;
 
-        public Builder withFirstName(String firstName) {
-            this.firstName = firstName;
+        public Builder withName(String name) {
+            this.name = name;
             return this;
         }
 
-        public Builder withLastName(String lastName) {
-            this.lastName = lastName;
-            return this;
-        }
 
         public Builder withEmail(String email) {
             this.email = email;

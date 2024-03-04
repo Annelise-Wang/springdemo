@@ -27,20 +27,27 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @PostConstruct
     public void init() {
-        userRegistry.put("user", new CustomUserDetails.Builder().withFirstName("Mark")
-            .withLastName("Johnson")
+        userRegistry.put("user", new CustomUserDetails.Builder()
+        	.withName("Mark")
             .withEmail("mark.johnson@email.com")
             .withUsername("user")
             .withPassword(passwordEncoder.encode("password"))
             .withAuthorities(Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")))
             .build());
-        userRegistry.put("admin", new CustomUserDetails.Builder().withFirstName("James")
-            .withLastName("Davis")
+        userRegistry.put("admin", new CustomUserDetails.Builder()
+            .withName("Davis")
             .withEmail("james.davis@email.com")
             .withUsername("admin")
             .withPassword(passwordEncoder.encode("admin"))
             .withAuthorities(Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN")))
             .build());
+        userRegistry.put("annelise", new CustomUserDetails.Builder()
+                .withName("Annelise")
+                .withEmail("b@gmail.com")
+                .withUsername("annelise")
+                .withPassword(passwordEncoder.encode("qwertyuiop"))
+                .withAuthorities(Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN")))
+                .build());
     }
 
     @Override

@@ -1,4 +1,4 @@
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 <head>
 <meta charset="UTF-8">
@@ -6,11 +6,17 @@
 </head>
 <body>
 	<div th:replace="~{layout/navbar}"></div>
-	<h1>首頁</h1>
-
-</body>
-</html-->
-<!DOCTYPE html>
+	<h3>首頁</h3>
+		
+	<div sec:authorize="hasRole('USER')"></div>
+	<div sec:authorize="hasRole('ADMIN')"></div>
+	<div sec:authorize="isAuthenticated()"></div>
+	安安~~
+	<div sec:authentication="name"></div>
+	
+	</body>
+</html>
+<!--<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Welcome</title>
@@ -30,4 +36,4 @@
         <input type="submit" value="Logout"/>
     </form>
 </body>
-</html>
+</html>-->

@@ -2,18 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <head>
 <meta charset="UTF-8">
-<title>新增房屋資訊</title>
+<title>新增衣服資訊</title>
 </head>
 <body>
 <div th:replace="~{layout/navbar}"></div>
 	<div class="container">
-		<h1>新增房屋資訊</h1>
+		<h1>新增衣服資訊</h1>
 		
 		<form action"" method="post" enctype="multipart/form-data">
-			<label for="uname"><b>房屋名稱</b></label>
+			<label for="uname"><b>衣服名稱</b></label>
 				<input type="text" placeholder="Enter HouseName" name="houseName" required>
                 <br>
-				<label for="file"><b>房屋照片</b></label>
+				<label for="file"><b>衣服照片</b></label>
 				<input type="file" name="file" multiple required>
 				<br>
 				<button type="submit">新增</button>

@@ -42,7 +42,7 @@
 		      <a class="page-link" th:href="@{/message/page?(p=${page.number})}">上一頁</a>
 		 </li>
 		  <li th:case="${false}" class="page-item disable">
-		     <span class="page-link">第一頁了</span>
+		     <span class="page-link">第一頁</span>
 		 </li>
 		 
 	 </th:block>
@@ -68,7 +68,7 @@
 		      <a class="page-link" th:href="@{/message/page?(p=${page.number + 2})}">下一頁</a>
 		 </li>
 		  <li th:case="${false}" class="page-item disable">
-		     <span class="page-link">最後一頁了兄弟</span>
+		     <span class="page-link">最後一頁</span>
 		 </li>
 		 
 	 </th:block>
